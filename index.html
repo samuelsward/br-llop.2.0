@@ -1,171 +1,244 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vårt Bröllop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miranda & Samuel – Bröllop</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: #f7f3ee;
-      color: #4a4a4a;
-    }
+<style>
 
-    /* Blommig ram */
-    .frame {
-      border: 18px solid transparent;
-      padding: 1rem;
-      background:
-        linear-gradient(#f7f3ee, #f7f3ee) padding-box,
-        repeating-linear-gradient(
-          45deg,
-          #d8cfc4,
-          #d8cfc4 10px,
-          #e9dfd3 10px,
-          #e9dfd3 20px
-        ) border-box;
-      min-height: 100vh;
-    }
+body{
+margin:0;
+font-family:'Montserrat',sans-serif;
+color:#4a4a4a;
+background:#f6f1e8;
+overflow-x:hidden;
+}
 
-    header {
-      text-align: center;
-      padding: 4rem 1rem 2rem;
-    }
+/* blomblad animation */
 
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      margin: 0;
-    }
+.petal{
+position:fixed;
+top:-10px;
+width:12px;
+height:12px;
+background:#e9d8d8;
+border-radius:50%;
+opacity:0.7;
+animation:fall linear infinite;
+}
 
-    header p {
-      margin-top: 0.5rem;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-    }
+@keyframes fall{
+0%{transform:translateY(-10px) rotate(0deg)}
+100%{transform:translateY(110vh) rotate(360deg)}
+}
 
-    section {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
+/* ram */
 
-    .card {
-      background: rgba(255,255,255,0.85);
-      border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 2.5rem;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-    }
+.frame{
+border:18px solid #e7dfd2;
+padding:1rem;
+min-height:100vh;
+background:#f6f1e8;
+}
 
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      text-align: center;
-      margin-top: 0;
-    }
+/* blom-hörn */
 
-    p {
-      line-height: 1.7;
-      text-align: center;
-    }
+.corner{
+position:fixed;
+width:140px;
+opacity:0.7;
+z-index:0;
+}
 
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-    }
+.top-left{top:0;left:0;transform:rotate(0deg);}
+.top-right{top:0;right:0;transform:scaleX(-1);}
+.bottom-left{bottom:0;left:0;transform:scaleY(-1);}
+.bottom-right{bottom:0;right:0;transform:rotate(180deg);}
 
-    input, textarea, select, button {
-      width: 100%;
-      padding: 0.6rem;
-      margin-top: 0.3rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-family: 'Montserrat', sans-serif;
-    }
+/* header */
 
-    button {
-      margin-top: 1.5rem;
-      background: #d8cfc4;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-    }
+header{
+text-align:center;
+padding:4rem 1rem 2rem;
+position:relative;
+z-index:1;
+}
 
-    button:hover {
-      background: #cbbfb2;
-    }
+header h1{
+font-family:'Playfair Display',serif;
+font-size:3rem;
+margin:0;
+}
 
-    footer {
-      text-align: center;
-      padding: 3rem 1rem 2rem;
-      font-size: 0.9rem;
-    }
-  </style>
+header p{
+margin-top:0.5rem;
+font-size:1.2rem;
+}
+
+/* nedräkning */
+
+.countdown{
+font-size:1.3rem;
+margin-top:1rem;
+font-weight:300;
+}
+
+/* sektioner */
+
+section{
+max-width:720px;
+margin:auto;
+padding:1rem;
+position:relative;
+z-index:1;
+}
+
+.card{
+background:rgba(255,255,255,0.9);
+border-radius:16px;
+padding:2rem;
+margin-bottom:2.5rem;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+h2{
+font-family:'Playfair Display',serif;
+text-align:center;
+margin-top:0;
+}
+
+p{
+line-height:1.7;
+text-align:center;
+}
+
+iframe{
+width:100%;
+height:500px;
+border:none;
+border-radius:10px;
+}
+
+footer{
+text-align:center;
+padding:3rem 1rem 2rem;
+font-size:0.9rem;
+}
+
+</style>
 </head>
+
 <body>
+
+<!-- blomblad -->
+<script>
+for(let i=0;i<25;i++){
+let petal=document.createElement("div")
+petal.className="petal"
+petal.style.left=Math.random()*100+"vw"
+petal.style.animationDuration=(6+Math.random()*6)+"s"
+petal.style.opacity=Math.random()
+document.body.appendChild(petal)
+}
+</script>
+
+<!-- blom-hörn -->
+
+<img class="corner top-left" src="https://pngimg.com/uploads/rose/rose_PNG659.png">
+<img class="corner top-right" src="https://pngimg.com/uploads/rose/rose_PNG659.png">
+<img class="corner bottom-left" src="https://pngimg.com/uploads/rose/rose_PNG659.png">
+<img class="corner bottom-right" src="https://pngimg.com/uploads/rose/rose_PNG659.png">
 
 <div class="frame">
 
-  <header>
-    <h1>Miranda & Samuel</h1>
-    <p>1 Augusti 2026</p>
-  </header>
+<header>
+<h1>Miranda & Samuel</h1>
+<p>1 Augusti 2026</p>
 
-  <section>
+<div class="countdown" id="countdown"></div>
+</header>
 
-    <div class="card">
-      <p>
-        Vi är så glada att få fira vår stora dag tillsammans med er.
-        Här hittar ni all information inför bröllopet –
-        OSA, låtönskningar och praktiska detaljer.
-      </p>
-    </div>
+<section>
 
-    <div class="card">
-      <h2>Information</h2>
-      <p><strong>Datum:</strong> 1 Augusti 2026</p>
-      <p><strong>Plats:</strong> Kristina Kyrka, Sala</p>
-      <p><strong>Klädkod:</strong> Hel och ren</p>
-      <p><strong>Tider:</strong> </p>
-    </div>
-</p><strong>
-    OSA Senast (datum)
-    </p>
-    <div class="card">
-      
-         <iframe
-        src=https://docs.google.com/forms/d/e/1FAIpQLScNIeTXx0FJC81r4ZshsAcBtWaOPq5JactOhkqABFFEYd2Zww/viewform?usp=dialog
-        width="100%"
-        height="600"
-        frameborder="0">
-      </iframe>
-    </div>
+<div class="card">
+<p>
+Vi är så glada att få fira vår stora dag tillsammans med er.
+Här hittar ni information inför bröllopet,
+OSA samt möjlighet att önska låtar till festen.
+</p>
+</div>
 
-    <div class="card">
-      <h2>Önska låt</h2>
-      <p>Hjälp oss skapa stämningen på dansgolvet.</p>
-      <iframe
-        src=https://docs.google.com/forms/d/e/1FAIpQLScsQaSQx_c7wcGlWI3vdZ_M7Qhe8XK-ejsBEJGxX8sdfg6Neg/viewform?usp=publish-editor
-        width="100%"
-        height="600"
-        frameborder="0">
-      </iframe>
-    </div>
+<div class="card">
+<h2>Information</h2>
 
-  </section>
+<p><strong>Datum:</strong> 1 Augusti 2026</p>
 
-  <footer>
-    <p>Vi ser fram emot att fira dagen med er 🤍</p>
-  </footer>
+<p><strong>Vigsel:</strong><br>
+Kristina kyrka<br>
+Gruvgatan 4<br>
+733 30 Sala
+</p>
+
+<p><strong>Klädkod:</strong> Hel och ren</p>
 
 </div>
+
+<div class="card">
+<h2>Hitta till kyrkan</h2>
+
+<iframe
+src="https://maps.google.com/maps?q=Kristina%20Kyrka%20Sala&t=&z=15&ie=UTF8&iwloc=&output=embed">
+</iframe>
+
+</div>
+
+<div class="card">
+<h2>OSA</h2>
+<p><strong>OSA senast: (datum)</strong></p>
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScNIeTXx0FJC81r4ZshsAcBtWaOPq5JactOhkqABFFEYd2Zww/viewform?usp=dialog"></iframe>
+
+</div>
+
+<div class="card">
+<h2>Önska låt</h2>
+<p>Hjälp oss skapa stämningen på dansgolvet.</p>
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScsQaSQx_c7wcGlWI3vdZ_M7Qhe8XK-ejsBEJGxX8sdfg6Neg/viewform?usp=publish-editor"></iframe>
+
+</div>
+
+</section>
+
+<footer>
+<p>Vi ser fram emot att fira dagen med er 🤍</p>
+</footer>
+
+</div>
+
+<script>
+
+/* nedräkning */
+
+const weddingDate = new Date("August 1, 2026 15:00:00").getTime()
+
+const countdown = setInterval(function(){
+
+const now = new Date().getTime()
+const distance = weddingDate - now
+
+const days = Math.floor(distance/(1000*60*60*24))
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60))
+
+document.getElementById("countdown").innerHTML =
+days + " dagar och " + hours + " timmar kvar"
+
+},1000)
+
+</script>
 
 </body>
 </html>
