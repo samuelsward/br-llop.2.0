@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -53,7 +54,7 @@ opacity:0.7;
 z-index:0;
 }
 
-.top-left{top:0;left:0;transform:rotate(0deg);}
+.top-left{top:0;left:0;}
 .top-right{top:0;right:0;transform:scaleX(-1);}
 .bottom-left{bottom:0;left:0;transform:scaleY(-1);}
 .bottom-right{bottom:0;right:0;transform:rotate(180deg);}
@@ -90,6 +91,7 @@ font-weight:300;
 
 section{
 max-width:720px;
+width:90%;
 margin:auto;
 padding:1rem;
 position:relative;
@@ -117,7 +119,7 @@ text-align:center;
 
 iframe{
 width:100%;
-height:500px;
+height:450px;
 border:none;
 border-radius:10px;
 }
@@ -128,12 +130,47 @@ padding:3rem 1rem 2rem;
 font-size:0.9rem;
 }
 
+/* MOBILANPASSNING */
+
+@media (max-width:700px){
+
+header h1{
+font-size:2.2rem;
+}
+
+header p{
+font-size:1rem;
+}
+
+.countdown{
+font-size:1.1rem;
+}
+
+.card{
+padding:1.5rem;
+}
+
+.frame{
+border:8px solid #e7dfd2;
+padding:0.5rem;
+}
+
+.corner{
+width:70px;
+opacity:0.5;
+}
+
+iframe{
+height:420px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- blomblad -->
 <script>
 for(let i=0;i<25;i++){
 let petal=document.createElement("div")
@@ -144,8 +181,6 @@ petal.style.opacity=Math.random()
 document.body.appendChild(petal)
 }
 </script>
-
-<!-- blom-hörn -->
 
 <img class="corner top-left" src="https://pngimg.com/uploads/rose/rose_PNG659.png">
 <img class="corner top-right" src="https://pngimg.com/uploads/rose/rose_PNG659.png">
@@ -221,9 +256,6 @@ Märk gärna betalningen med “Bröllopsresa”.
 
 <iframe
 src="https://maps.google.com/maps?q=Kristina%20Kyrka%20Sala&t=&z=15&ie=UTF8&iwloc=&output=embed"
-width="100%"
-height="400"
-style="border:0;border-radius:10px;"
 loading="lazy">
 </iframe>
 
@@ -256,8 +288,6 @@ loading="lazy">
 
 <script>
 
-/* nedräkning */
-
 const weddingDate = new Date("August 1, 2026 13:00:00").getTime()
 
 const countdown = setInterval(function(){
@@ -277,3 +307,4 @@ days + " dagar och " + hours + " timmar kvar"
 
 </body>
 </html>
+```
