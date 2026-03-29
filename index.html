@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -6,9 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miranda & Samuel – Bröllop</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
+
+html {
+scroll-behavior: smooth;
+}
 
 body{
 margin:0;
@@ -23,11 +26,12 @@ overflow-x:hidden;
 .petal{
 position:fixed;
 top:-10px;
-width:12px;
-height:12px;
+width:10px;
+height:10px;
 background:#e9d8d8;
 border-radius:50%;
-opacity:0.7;
+opacity:0.6;
+filter:blur(0.5px);
 animation:fall linear infinite;
 }
 
@@ -45,20 +49,20 @@ min-height:100vh;
 background:#f6f1e8;
 }
 
-/* blom-hörn */
+/* små blommor i hörn */
 
 .corner{
 position:fixed;
-width:140px;
-opacity:0.7;
+width:80px;
+opacity:0.6;
 z-index:0;
-filter:saturate(0.9) brightness(1.05);
+pointer-events:none;
 }
 
-.top-left{top:0;left:0;}
-.top-right{top:0;right:0;transform:scaleX(-1);}
-.bottom-left{bottom:0;left:0;transform:scaleY(-1);}
-.bottom-right{bottom:0;right:0;transform:rotate(180deg);}
+.top-left{top:10px;left:10px;}
+.top-right{top:10px;right:10px;transform:scaleX(-1);}
+.bottom-left{bottom:10px;left:10px;transform:scaleY(-1);}
+.bottom-right{bottom:10px;right:10px;transform:rotate(180deg);}
 
 /* header */
 
@@ -79,8 +83,6 @@ header p{
 margin-top:0.5rem;
 font-size:1.2rem;
 }
-
-/* nedräkning */
 
 .countdown{
 font-size:1.3rem;
@@ -105,12 +107,20 @@ border-radius:16px;
 padding:2rem;
 margin-bottom:2.5rem;
 box-shadow:0 10px 30px rgba(0,0,0,0.05);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-4px);
+box-shadow:0 20px 40px rgba(0,0,0,0.08);
 }
 
 h2{
 font-family:'Playfair Display',serif;
 text-align:center;
 margin-top:0;
+letter-spacing:1px;
+font-weight:500;
 }
 
 p{
@@ -157,7 +167,7 @@ padding:0.5rem;
 }
 
 .corner{
-width:70px;
+width:50px;
 opacity:0.5;
 }
 
@@ -173,7 +183,7 @@ height:420px;
 <body>
 
 <script>
-for(let i=0;i<25;i++){
+for(let i=0;i<15;i++){
 let petal=document.createElement("div")
 petal.className="petal"
 petal.style.left=Math.random()*100+"vw"
@@ -183,12 +193,12 @@ document.body.appendChild(petal)
 }
 </script>
 
-<!-- nya blommor -->
+<!-- små söta hörnblommor -->
 
-<img class="corner top-left" src="https://pngimg.com/uploads/dahlia/dahlia_PNG30.png">
-<img class="corner top-right" src="https://pngimg.com/uploads/carnation/carnation_PNG28.png">
-<img class="corner bottom-left" src="https://pngimg.com/uploads/carnation/carnation_PNG28.png">
-<img class="corner bottom-right" src="https://pngimg.com/uploads/dahlia/dahlia_PNG30.png">
+<img class="corner top-left" src="https://pngimg.com/uploads/rose/rose_PNG656.png">
+<img class="corner top-right" src="https://pngimg.com/uploads/rose/rose_PNG656.png">
+<img class="corner bottom-left" src="https://pngimg.com/uploads/rose/rose_PNG656.png">
+<img class="corner bottom-right" src="https://pngimg.com/uploads/rose/rose_PNG656.png">
 
 <div class="frame">
 
@@ -240,8 +250,8 @@ Efter kl 20 så är det 15+.
 </p>  
 
 <p><strong>Dryck:</strong><br>
-Till middagen bjuds det på vin, öl, cider samt alkoholfria alternativ<br>
-Senare under kvällen kommer alkohol finnas till försäljning.
+Till middagen serveras vin, öl, cider samt alkoholfria alternativ.<br>
+Senare under kvällen finns dryck till försäljning.
 </p>   
 
 <p><strong>Mat:</strong><br>
@@ -251,6 +261,7 @@ Vänligen kontakta oss för allergier eller specialkost
 
 <p><strong>Parkering:</strong><br>
 Vid mottagningen finns det möjlighet att ställa husbilar
+</p>
 
 </div>
 
@@ -266,8 +277,7 @@ Vi önskar oss därför inga traditionella presenter.
 <p>
 Om ni ändå skulle vilja ge något uppskattar vi istället
 ett bidrag till vår bröllopsresa.
-
-<p>
+</p>
 
 <p style="margin-top:20px;">
 <strong>Swish:</strong><br>
@@ -294,7 +304,7 @@ loading="lazy">
 <h2>OSA</h2>
 <p><strong>OSA senast: 31 maj</strong></p>
 (Hushåll där flertal personer är bjudna ber vi er skriva namn på alla som kommer)
-<p>(Inga +1)
+<p>(Inga +1)</p>
 
 <iframe src="https://forms.gle/2G4asiigg9RY7mLz6"></iframe>
 
@@ -329,7 +339,7 @@ const days = Math.floor(distance/(1000*60*60*24))
 const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60))
 
 document.getElementById("countdown").innerHTML =
-days + " dagar och " + hours + " timmar kvar"
+"⏳ " + days + " dagar & " + hours + " timmar kvar"
 
 },1000)
 
@@ -337,4 +347,3 @@ days + " dagar och " + hours + " timmar kvar"
 
 </body>
 </html>
-```
